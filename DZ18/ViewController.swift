@@ -41,16 +41,42 @@ class ViewController: UIViewController {
     
     func setupUrlSessionButton(){
         urlSessionButtonOutlet.layer.cornerRadius = 15
+        urlSessionButtonOutlet.snp.makeConstraints { make in
+            make.width.equalTo(150)
+            make.height.equalTo(40)
+            make.top.equalToSuperview().inset(180)
+            make.left.equalToSuperview().inset(20)
+        }
     }
     func setupAlamofireButton(){
         alamofireButtonOutlet.layer.cornerRadius = 15
+        alamofireButtonOutlet.snp.makeConstraints { make in
+            make.width.equalTo(150)
+            make.height.equalTo(40)
+            make.top.equalToSuperview().inset(180)
+            make.right.equalToSuperview().inset(20)
+        }
     }
     func setupLinkTextView(){
         linkTextViewOutlet.text = answerServer
         linkTextViewOutlet.layer.cornerRadius = 15
+        linkTextViewOutlet.font = .systemFont(ofSize: 12)
+        linkTextViewOutlet.snp.makeConstraints { make in
+            make.height.equalTo(550)
+            make.bottom.equalToSuperview().inset(60)
+            make.right.equalToSuperview().inset(20)
+            make.left.equalToSuperview().inset(20)
+        }
     }
     func setupInputTextField(){
+        inputTextFieldOutlet.font = .systemFont(ofSize: 18)
         inputTextFieldOutlet.layer.cornerRadius = 15
+        inputTextFieldOutlet.snp.makeConstraints { make in
+            make.height.equalTo(60)
+            make.top.equalToSuperview().inset(100)
+            make.right.equalToSuperview().inset(20)
+            make.left.equalToSuperview().inset(20)
+        }
     }
     
     func createdUrlSessionLink(){
@@ -81,3 +107,4 @@ class ViewController: UIViewController {
         
     }
 }
+
