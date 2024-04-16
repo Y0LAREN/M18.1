@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         setupInputTextField()
         setupAlamofireButton()
         setupUrlSessionButton()
+        
     }
 
     @IBOutlet weak var urlSessionButtonOutlet: UIButton!
@@ -80,6 +81,7 @@ class ViewController: UIViewController {
     }
     
     func createdUrlSessionLink(){
+        let mainQueue = DispatchQueue.main
         urlString = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword="
         userInput = inputTextFieldOutlet.text
         urlString += userInput ?? ""
@@ -94,9 +96,11 @@ class ViewController: UIViewController {
             if let error = error {
                 print(error)
             }
-            else if let data = data, let json = try? JSONSerialization.jsonObject(with:data, options: []) {
+            else if let data = data, let _ = try? JSONSerialization.jsonObject(with:data, options: []) {
                 let convertedString = String(data: data, encoding: .utf8)
-                self.linkTextViewOutlet.text = convertedString
+                mainQueue.async {
+                    self.linkTextViewOutlet.text = convertedString
+                }
                 print(convertedString as Any)
             }
         })
